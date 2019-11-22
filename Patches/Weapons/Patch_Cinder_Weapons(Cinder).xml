@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Cinder's Bow projectile -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="RWBY_Cinder_Bow_Projectile"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Arrow</damageDef>
+				<damageAmountBase>28</damageAmountBase>
+				<stoppingPower>2</stoppingPower>
+				<speed>60</speed>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="RWBY_Cinder_Bow_Glass_Projectile"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Arrow</damageDef>
+				<damageAmountBase>35</damageAmountBase>
+				<stoppingPower>2</stoppingPower>
+				<speed>60</speed>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- Cinder's spear thrown projectile, basically a Pila, but much faster, higher range and way more damage -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Cinder_Spear_Thrown"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>RangedStab</damageDef>
+				<damageAmountBase>30</damageAmountBase>
+				<stoppingPower>3</stoppingPower>
+				<armorPenetrationBase>0.15</armorPenetrationBase>
+				<speed>40</speed>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- Cinder base weapon, melee, dual blades, craftable -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Cinder_Metal_Blades"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+						<li>Scratch</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>0.9</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.2</cooldownTime>
+					<armorPenetration>0.23</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Cinder_Metal_Blades"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>2</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Cinder_Metal_Blades"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>0.20</MeleeDodgeChance>
+				<MeleeCritChance>0.66</MeleeCritChance>
+				<MeleeParryChance>0.68</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- Cinder weapon, ranged, bow -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RWBY_Cinder_Metal_Bow</defName>
+		<statBases>
+			<WorkToMake>30000</WorkToMake>
+			<Mass>3</Mass>
+			<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.5</SightsEfficiency>
+			<ShotSpread>0.50</ShotSpread>
+			<SwayFactor>1.5</SwayFactor>
+			<Bulk>4</Bulk>
+		</statBases>
+		<costList>
+			<Steel>200</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<FireDustCrystal>30</FireDustCrystal>
+			<IceDustCrystal>20</IceDustCrystal>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RWBY_Cinder_Bow_Projectile</defaultProjectile>
+			<!--forcedMissRadius>1</forcedMissRadius-->
+			<warmupTime>1.3</warmupTime>
+			<range>40</range>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>Shoot_Fireball</soundCast>
+		</Properties>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_Bow</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Cinder_Metal_Bow"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>arrow</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>bow</label>
+					<capacities>
+						<li>Poke</li>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>2.2</cooldownTime>
+					<armorPenetration>0.09</armorPenetration>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Cinder ability weapons -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Cinder_Scimitar"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>RWBY_Inflame_Slash</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>1.3</cooldownTime>
+					<armorPenetration>0.23</armorPenetration>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>22</power>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetration>0.34</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Cinder_Scimitar"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<MeleeCounterParryBonus>2</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Cinder_Scimitar"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>0.12</MeleeDodgeChance>
+				<MeleeCritChance>0.70</MeleeCritChance>
+				<MeleeParryChance>0.73</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Cinder_Spear"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>RWBY_Inflame_Slash</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>26</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.39</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Cinder_Spear"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Cinder_Spear"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>0.48</MeleeDodgeChance>
+				<MeleeCritChance>0.58</MeleeCritChance>
+				<MeleeParryChance>0.52</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Cinder_Spear"]/comps</xpath>
+		<value>
+			<comps>
+			<li Class="CompProperties_Forbiddable"/>
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>
+				<li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+					<eastOffset>(0,0,0)</eastOffset>
+					<westOffset>(0,0,0)</westOffset>
+				</li>
+				<li Class="RWBYRemnant.WeaponProjectileComp">
+					<AbilityLabel>Throw Dust Spear</AbilityLabel>
+					<AbilityDesc>Create a spear out of dust and throw it</AbilityDesc>
+					<AbilityIcon>Things/Item/Equipment/Weapons/Cinder_Spear</AbilityIcon>
+					<AbilitySound>Throw_Cinder_Spear</AbilitySound>
+					<WarmupSound>Transform_Glass</WarmupSound>
+					<AbilityProjectile>Cinder_Spear_Thrown_CE</AbilityProjectile>
+					<WarmupTime>1.3</WarmupTime>
+					<Range>35</Range>
+					<BurstShotCount>1</BurstShotCount>
+					<TicksBetweenBurstShots>1</TicksBetweenBurstShots>
+				</li>
+				<li Class="RWBYRemnant.LightCopyComp"/>
+			</comps>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Cinder_Blades"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+						<li>Scratch</li>
+					</capacities>
+					<power>16</power>
+					<cooldownTime>0.9</cooldownTime>
+					<armorPenetration>0.13</armorPenetration>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>1.2</cooldownTime>
+					<armorPenetration>0.24</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Cinder_Blades"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>2</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Cinder_Blades"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>0.20</MeleeDodgeChance>
+				<MeleeCritChance>0.70</MeleeCritChance>
+				<MeleeParryChance>0.70</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Cinder_Bow"]/comps</xpath>
+		<value>
+			<comps>
+			<li Class="CompProperties_Forbiddable"/>
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>
+				<li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+					<eastOffset>(0,0,0)</eastOffset>
+					<westOffset>(0,0,0)</westOffset>
+				</li>
+				<li Class="RWBYRemnant.WeaponProjectileComp">
+					<AbilityLabel>Shoot glass arrow</AbilityLabel>
+					<AbilityDesc>Shoot an arrow that can desintegrade if needed to never miss its mark</AbilityDesc>
+					<AbilityIcon>Things/UI/Glass_Arrow</AbilityIcon>
+					<AbilitySound>Shoot_Fireball</AbilitySound>
+					<AbilityProjectile>RWBY_Cinder_Bow_Glass_Projectile_CE</AbilityProjectile>
+					<WarmupTime>1.8</WarmupTime>
+					<Range>40</Range>
+					<targetingParameters>
+						<canTargetPawns>true</canTargetPawns>
+						<canTargetBuildings>false</canTargetBuildings>
+						<canTargetSelf>false</canTargetSelf>
+						<canTargetItems>false</canTargetItems>
+						<canTargetLocations>false</canTargetLocations>
+						<mapObjectTargetsMustBeAutoAttackable>true</mapObjectTargetsMustBeAutoAttackable>					
+					</targetingParameters>
+					<cannotMiss>true</cannotMiss>
+				</li>
+				<li Class="RWBYRemnant.LightCopyComp"/>
+			</comps>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RWBY_Cinder_Bow</defName>
+		<statBases>
+			<WorkToMake>30000</WorkToMake>
+			<MarketValue>0</MarketValue>
+			<Mass>0</Mass>
+			<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.7</SightsEfficiency>
+			<ShotSpread>0.42</ShotSpread>
+			<SwayFactor>1.27</SwayFactor>
+			<Bulk>4</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RWBY_Cinder_Bow_Glass_Projectile</defaultProjectile>
+			<!--forcedMissRadius>1</forcedMissRadius-->
+			<warmupTime>1.3</warmupTime>
+			<range>40</range>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>Shoot_Fireball</soundCast>
+		</Properties>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_Bow</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Cinder_Bow"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>arrow</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetration>0.12</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>bow</label>
+					<capacities>
+						<li>Poke</li>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>2.2</cooldownTime>
+					<armorPenetration>0.09</armorPenetration>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

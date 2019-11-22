@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Neopolitan's Umbrella, open, can act as shield -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Neo_Umbrella_Open"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>2.0</cooldownTime>
+					<armorPenetration>0.13</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>side</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.09</armorPenetration>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Neo_Umbrella_Open"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Neo_Umbrella_Open"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>0.99</MeleeDodgeChance>
+				<MeleeCritChance>0.20</MeleeCritChance>
+				<MeleeParryChance>0.30</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- Neopolitan's Umbrella closed, melee can do poke/blunt damage -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Neo_Umbrella_Closed"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.17</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.11</armorPenetration>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Neo_Umbrella_Closed"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Neo_Umbrella_Closed"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>0.33</MeleeDodgeChance>
+				<MeleeCritChance>0.29</MeleeCritChance>
+				<MeleeParryChance>0.33</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- Neopolitan's Umbrella blade version, melee can do stab/cut damage -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Neo_Umbrella_Blade"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>2.5</cooldownTime>
+					<armorPenetration>0.41</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetration>0.21</armorPenetration>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Neo_Umbrella_Blade"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Neo_Umbrella_Blade"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>0.33</MeleeDodgeChance>
+				<MeleeCritChance>0.29</MeleeCritChance>
+				<MeleeParryChance>0.33</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- Cinder Weapon ability specific bullets work like vanilla -->
+
+	<ThingDef>
+		<defName>RWBY_Cinder_Bow_Glass_Projectile_CE</defName>
+		<label>Cinder Bow Glass Arrow</label>
+		<category>Projectile</category>
+		<tickerType>Normal</tickerType>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<thingClass>Bullet</thingClass>
+		<useHitPoints>False</useHitPoints>
+		<neverMultiSelect>True</neverMultiSelect>
+		<graphicData>
+			<shaderType>Transparent</shaderType>
+			<texPath>Things/Projectile/Glass_Arrow</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Arrow</damageDef>
+			<damageAmountBase>35</damageAmountBase>
+			<stoppingPower>2</stoppingPower>
+			<speed>60</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef>
+		<defName>Cinder_Spear_Thrown_CE</defName>
+		<label>Cinder's Spear</label>
+		<category>Projectile</category>
+		<tickerType>Normal</tickerType>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<thingClass>Bullet</thingClass>
+		<useHitPoints>False</useHitPoints>
+		<neverMultiSelect>True</neverMultiSelect>
+		<graphicData>
+			<shaderType>Transparent</shaderType>
+			<texPath>Things/Projectile/Cinder_Spear_Thrown</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.9</drawSize>
+		</graphicData>
+		<projectile>
+			<damageDef>RangedStab</damageDef>
+			<damageAmountBase>30</damageAmountBase>
+			<stoppingPower>3</stoppingPower>
+			<armorPenetrationBase>0.15</armorPenetrationBase>
+			<speed>40</speed>
+		</projectile>
+	</ThingDef>
+
+</Defs>

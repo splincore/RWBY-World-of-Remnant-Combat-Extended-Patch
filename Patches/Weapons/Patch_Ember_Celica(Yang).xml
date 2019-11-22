@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Ember Celica custom bullet -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bullet_Ember_Celica"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Bullet_Ember_Celica"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Bomb_Ember_Celica</damageDef>
+				<explosionRadius>0.5</explosionRadius>
+				<speed>50</speed>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- Ember Celica base weapon, melee can do blunt damage, uses the same bomb type for melee and ranged  -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RWBY_Ember_Celica_Gun</defName>
+		<statBases>
+			<WorkToMake>30000</WorkToMake>
+			<Mass>1.5</Mass>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>1.20</SwayFactor>
+			<Bulk>3</Bulk>
+		</statBases>
+		<costList>
+			<Steel>200</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<FireDustCrystal>20</FireDustCrystal>
+			<GravityDustCrystal>30</GravityDustCrystal>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Ember_Celica</defaultProjectile>
+			<!--forcedMissRadius>1</forcedMissRadius-->
+			<warmupTime>0.5</warmupTime>
+			<range>20</range>
+			<burstShotCount>5</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<soundCast>Shot_Shotgun</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AssaultWeapon</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Ember_Celica_Gun"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Bomb_Ember_Celica</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>0.8</cooldownTime>
+					<armorPenetration>0.16</armorPenetration>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Ember_Celica_Gun"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>0.33</MeleeDodgeChance>
+				<MeleeCritChance>0.45</MeleeCritChance>
+				<MeleeParryChance>0.28</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Ember_Celica_Melee"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Bomb_Ember_Celica</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>0.8</cooldownTime>
+					<armorPenetration>0.16</armorPenetration>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Ember_Celica_Melee"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Ember_Celica_Melee"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>0.33</MeleeDodgeChance>
+				<MeleeCritChance>0.45</MeleeCritChance>
+				<MeleeParryChance>0.28</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+</Patch>

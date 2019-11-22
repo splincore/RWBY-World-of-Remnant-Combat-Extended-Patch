@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Harbinger custom bullet -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Harbinger_Bullet"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Bullet</damageDef>
+				<damageAmountBase>20</damageAmountBase>
+				<stoppingPower>3</stoppingPower>
+				<speed>60</speed>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- Harbinger base weapon, sword form, craftable-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Harbinger_Sword"]/comps</xpath>
+		<value>
+			<comps>
+				<li Class="CompProperties_Forbiddable"/>
+				<li>
+					<compClass>CompEquippable</compClass>
+				</li>
+				<li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+					<eastOffset>(0.25,0,0)</eastOffset>
+					<westOffset>(-0.25,0,0)</westOffset>
+				</li>		
+				<li Class="RWBYRemnant.WeaponTransformComp">
+					<TransformDesc>Transforms into a scythe</TransformDesc>
+					<TransformIcon>Things/Item/Equipment/Weapons/Harbinger_Scythe</TransformIcon>
+					<transformSound>Draw_Gambol_Shroud_Cleaver</transformSound>
+					<transformInto>RWBY_Harbinger_Scythe</transformInto>
+				</li>
+				<li Class="RWBYRemnant.WeaponTransformComp">
+					<TransformDesc>Transforms into a shotgun</TransformDesc>
+					<TransformIcon>Things/Item/Equipment/Weapons/Harbinger_Shotgun</TransformIcon>
+					<transformSound>Interact_Shotgun</transformSound>
+					<transformInto>RWBY_Harbinger_Shotgun</transformInto>
+				</li>
+				<li Class="RWBYRemnant.WeaponProjectileComp">
+					<AbilityLabel>Quick Shot</AbilityLabel>
+					<AbilityDesc>Shoot a quick shot from the handle</AbilityDesc>
+					<AbilityIcon>Things/Item/Equipment/Weapons/Harbinger_Shotgun</AbilityIcon>
+					<AbilitySound>Shot_Shotgun</AbilitySound>
+					<AbilityProjectile>Harbinger_Bullet_CE</AbilityProjectile>
+					<WarmupTime>0.3</WarmupTime>
+					<Range>25</Range>
+					<BurstShotCount>1</BurstShotCount>
+					<TicksBetweenBurstShots>1</TicksBetweenBurstShots>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Harbinger_Sword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetration>0.07</armorPenetration>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+						<li>Scratch</li>					
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.1</cooldownTime>
+					<armorPenetration>0.29</armorPenetration>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Harbinger_Sword"]/statBases</xpath>
+		<value>
+			<Bulk>9</Bulk>
+			<MeleeCounterParryBonus>2</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Harbinger_Sword"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>0.22</MeleeDodgeChance>
+				<MeleeCritChance>0.55</MeleeCritChance>
+				<MeleeParryChance>0.63</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- Harbinger base weapon, scythe form, not craftable-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Harbinger_Scythe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetration>0.21</armorPenetration>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+						<li>Scratch</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>1.3</cooldownTime>
+					<armorPenetration>0.29</armorPenetration>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Harbinger_Scythe"]/statBases</xpath>
+		<value>
+			<Bulk>9</Bulk>
+			<MeleeCounterParryBonus>2.3</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Harbinger_Scythe"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>0.33</MeleeDodgeChance>
+				<MeleeCritChance>0.60</MeleeCritChance>
+				<MeleeParryChance>0.40</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- Harbinger base weapon, shotgun form, not craftable-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RWBY_Harbinger_Shotgun</defName>
+		<statBases>
+			<WorkToMake>30000</WorkToMake>
+			<Mass>4.5</Mass>
+			<RangedWeapon_Cooldown>1.1</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.33</SwayFactor>
+			<Bulk>9</Bulk>
+		</statBases>
+		<costList>
+			<Steel>200</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<FireDustCrystal>30</FireDustCrystal>
+			<GravityDustCrystal>20</GravityDustCrystal>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Harbinger_Bullet</defaultProjectile>
+			<!--forcedMissRadius>1</forcedMissRadius-->
+			<warmupTime>0.5</warmupTime>
+			<range>25</range>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>Shot_Shotgun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AssaultWeapon</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Harbinger_Shotgun"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetration>0.09</armorPenetration>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

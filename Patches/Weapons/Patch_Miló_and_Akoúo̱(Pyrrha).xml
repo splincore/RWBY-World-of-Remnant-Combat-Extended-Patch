@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Akouo shield -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Akouo_Shield"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>side</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetration>0.07</armorPenetration>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>front</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetration>0.07</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Akouo_Shield"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Akouo_Shield"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>0.70</MeleeDodgeChance>
+				<MeleeCritChance>0.0</MeleeCritChance>
+				<MeleeParryChance>0.40</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- Milo Xiphos, melee can do stab/cut damage -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Milo_Xiphos"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>1.2</cooldownTime>
+					<armorPenetration>0.24</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>1.2</cooldownTime>
+					<armorPenetration>0.14</armorPenetration>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Milo_Xiphos"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Milo_Xiphos"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>0.22</MeleeDodgeChance>
+				<MeleeCritChance>0.56</MeleeCritChance>
+				<MeleeParryChance>0.10</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>Defs/ThingDef[defName="RWBY_Milo_Xiphos"]/weaponTags</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RWBY_Milo_Xiphos"]</xpath>
+				<value>
+					<weaponTags />
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Milo_Xiphos"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- Milo thrown projectile, basically a Pila, but much faster, higher range and way more damage -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Milo_Thrown"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>RangedStab</damageDef>
+				<damageAmountBase>30</damageAmountBase>
+				<stoppingPower>2.5</stoppingPower>
+				<armorPenetrationBase>0.15</armorPenetrationBase>
+				<speed>40</speed>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- Milo Javelin, melee can do stab/cut damage, slower than Xiphos, but can be thrown -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Milo_Javelin"]/comps</xpath>
+		<value>
+			<comps>
+				<li Class="CompProperties_Forbiddable"/>
+				<li>
+					<compClass>CompEquippable</compClass>
+				</li>
+				<li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+					<eastOffset>(0,0,0)</eastOffset>
+					<westOffset>(0,0,0)</westOffset>
+				</li>
+				<li Class="RWBYRemnant.WeaponTransformComp">
+					<TransformDesc>Transform into a xiphos</TransformDesc>
+					<TransformIcon>Things/Item/Equipment/Weapons/Milo_Xiphos</TransformIcon>
+					<transformSound>Draw_Gambol_Shroud_Cleaver</transformSound>
+					<transformInto>RWBY_Milo_Xiphos</transformInto>
+				</li>
+				<li Class="RWBYRemnant.WeaponTransformComp">
+					<TransformDesc>Transform into a rifle</TransformDesc>
+					<TransformIcon>Things/Item/Equipment/Weapons/Milo_Rifle</TransformIcon>
+					<transformSound>Interact_Rifle</transformSound>
+					<transformInto>RWBY_Milo_Rifle</transformInto>
+				</li>
+				<li Class="RWBYRemnant.WeaponProjectileComp">
+					<AbilityLabel>Throw Milo</AbilityLabel>
+					<AbilityDesc>Throw Milo at something. Milo will never miss the target.</AbilityDesc>
+					<AbilityIcon>Things/Item/Equipment/Weapons/Milo_Javelin</AbilityIcon>
+					<AbilitySound>Throw_Milo_Javelin</AbilitySound>				
+					<AbilityProjectile>Milo_Thrown_CE</AbilityProjectile>
+					<WarmupTime>2</WarmupTime>
+					<Range>45</Range>
+					<targetingParameters>
+						<canTargetPawns>true</canTargetPawns>
+						<canTargetBuildings>true</canTargetBuildings>
+						<canTargetSelf>false</canTargetSelf>
+						<canTargetItems>false</canTargetItems>
+						<canTargetLocations>false</canTargetLocations>
+						<mapObjectTargetsMustBeAutoAttackable>false</mapObjectTargetsMustBeAutoAttackable>					
+					</targetingParameters>
+					<cannotMiss>true</cannotMiss>
+					<usesAmmunition>GravityDustPowder</usesAmmunition>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Milo_Javelin"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>1.7</cooldownTime>
+					<armorPenetration>0.28</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>1.7</cooldownTime>
+					<armorPenetration>0.16</armorPenetration>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Milo_Javelin"]/statBases</xpath>
+		<value>
+			<Bulk>7</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Milo_Javelin"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>0.19</MeleeDodgeChance>
+				<MeleeCritChance>0.56</MeleeCritChance>
+				<MeleeParryChance>0.12</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>Defs/ThingDef[defName="RWBY_Milo_Javelin"]/weaponTags</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RWBY_Milo_Javelin"]</xpath>
+				<value>
+					<weaponTags />
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RWBY_Milo_Javelin"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- Milo rifle custom bullet -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Bullet_Milo_Rifle"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Bullet</damageDef>
+				<damageAmountBase>16</damageAmountBase>
+				<stoppingPower>1</stoppingPower>
+				<speed>80</speed>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- Milo, rifle form -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RWBY_Milo_Rifle</defName>
+		<statBases>
+			<WorkToMake>30000</WorkToMake>
+			<Mass>3</Mass>
+			<RangedWeapon_Cooldown>1.3</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.2</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.33</SwayFactor>
+			<Bulk>7</Bulk>
+		</statBases>
+		<costList>
+			<Steel>100</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<IceDustCrystal>30</IceDustCrystal>
+		</costList>	
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Milo_Rifle</defaultProjectile>
+			<!--forcedMissRadius>1</forcedMissRadius-->
+			<warmupTime>1.1</warmupTime>
+			<range>35</range>
+			<burstShotCount>5</burstShotCount>				
+			<soundCast>Shot_AssaultRifle</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Rifle</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RWBY_Milo_Rifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetration>0.07</armorPenetration>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Poke</li>					
+					</capacities>
+					<power>8</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetration>0.07</armorPenetration>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>
